@@ -1,9 +1,10 @@
-package com.example.zoan
+package com.example.zoan.loan.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import com.example.zoan.R
 import kotlinx.android.synthetic.main.activity_create_loan.*
 
 class CreateLoanActivity : AppCompatActivity() {
