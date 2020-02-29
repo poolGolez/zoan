@@ -1,28 +1,34 @@
 package com.example.zoan.loan.ui
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class CreateLoanViewModel : ViewModel() {
 
-    val loanAmount = MutableLiveData<Double>()
-
-    val monthsNumber = MutableLiveData<Int>()
-
-    val interest = MutableLiveData<Double>()
-
-    init {
-        loanAmount.value = 2500.0
-        monthsNumber.value = 1
-        interest.value = 0.12
-    }
-
-    val payment: Double
-        get() {
-            val totalInterest: Double = interest.value?.times(monthsNumber?.value ?: 0) ?: 0.00
-            val totalReceivable: Double = (loanAmount.value?.times(1.00 + totalInterest)) ?: 0.00
-            val gives = monthsNumber.value?.times(2) ?: 1
-
-            return totalReceivable / gives
+    var loanAmount: Double = 2500.0
+        set(value: Double) {
+            field = value
+            _computePayment()
         }
+
+    var monthsNumber: Int = 1
+        set(value: Int) {
+            field = value
+            _computePayment()
+        }
+
+    val interest: Double = 0.12
+
+    private val _payment = MutableLiveData<Double>()
+    val payment: LiveData<Double>
+        get() = _payment
+
+
+    private fun _computePayment() {
+        val totalInterest: Double = interest * monthsNumber
+        val totalReceivable: Double = (loanAmount * (1.00 + totalInterest))
+        val gives: Int = monthsNumber * 2
+        _payment.value = totalReceivable / gives
+    }
 }
