@@ -8,7 +8,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.zoan.R
 import kotlinx.android.synthetic.main.activity_create_loan.*
-import timber.log.Timber
 
 class CreateLoanActivity : AppCompatActivity() {
 
