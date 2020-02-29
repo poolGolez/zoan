@@ -19,7 +19,7 @@ class DashboardFragment : Fragment() {
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_dashboard, container, false)
         val createLoanNavButton = view.findViewById<Button>(R.id.createLoanNavButton)
-        createLoanNavButton.setOnClickListener { v: View ->
+        createLoanNavButton.setOnClickListener {
             findNavController().navigate(R.id.action_dashboardFragment_to_createLoanFragment)
         }
 
